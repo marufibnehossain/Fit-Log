@@ -31,3 +31,9 @@ h1, h2, h3, h4, h5, h6 {
 p, li {
   color: var(--color-text-secondary);
 }
+
+@layer components {
+  .btn-global {
+    @apply bg-primary text-black py-3 px-6 rounded-md text-xs uppercase font-bold tracking-[0.3px];
+  }
+}
