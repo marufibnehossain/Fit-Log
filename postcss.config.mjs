@@ -21,7 +21,7 @@ const config = {
           secondary: "var(--color-text-secondary)",
           muted: "var(--color-text-muted)",
         },
-        border: "var(--color-border)",
+        stroke: "var(--color-border)",
         success: "var(--color-success)",
         error: "var(--color-error)",
       },
