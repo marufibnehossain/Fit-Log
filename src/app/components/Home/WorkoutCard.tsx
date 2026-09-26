@@ -4,6 +4,7 @@ import { LuClock } from "react-icons/lu";
 import { PiFireSimpleFill } from "react-icons/pi";
 import { FaRegStar } from "react-icons/fa6";
 import { IWorkout } from '@/app/types/workout.type';
+import Link from 'next/link';
 
 interface IWorkoutProps {
     workout: IWorkout
@@ -11,12 +12,12 @@ interface IWorkoutProps {
 
 const WorkoutCard = ({workout}:IWorkoutProps) => {
     return (
-        <div className='bg-[#15171D] border border-[#222630] rounded-2xl overflow-hidden'>
+        <Link href={`/workouts/${workout.id}`} className='bg-[#15171D] border border-[#222630] rounded-2xl overflow-hidden'>
             <Image src={workout.image} className='w-full h-auto aspect-4/3 object-cover object-top' width={300} height={300} alt="arms"></Image>
             <div className='p-6'>
                 <div className='flex gap-2 mb-3'>
                     {
-                        workout.muscleGroups.map((tag:string) => <span key={tag} className='text-[11px] text-black uppercase font-bold tracking-[0.55px] bg-primary rounded-full py-1 px-2.5 leading-none'>{tag}</span>)
+                        workout.muscleGroups.map((tag:string) => <span key={tag} className='text-[11px] text-black uppercase font-bold tracking-[0.55px] bg-primary rounded-full py-1.5 px-2.5 leading-none'>{tag}</span>)
                     }
                 </div>
                 <h2 className='text-lg font-bold tracking-[0.45px] uppercase mb-1'>{workout.name}</h2>
@@ -28,7 +29,7 @@ const WorkoutCard = ({workout}:IWorkoutProps) => {
                     <li className='flex gap-2 items-center text-xs'><FaRegStar /> {workout.rating}</li>
                 </ul>
             </div>
-        </div>
+        </Link>
     );
 };
 

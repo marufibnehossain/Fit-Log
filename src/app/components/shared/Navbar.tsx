@@ -7,7 +7,7 @@ import React from 'react';
 const Navbar = () => {
 
     const links = <>
-        <li className={`${usePathname() === "/workouts" ? "bg-[#1A2312] text-primary!" : ""} hover:bg-[#1A2312]  hover:text-primary! rounded-full`}><Link className="px-4 py-1.5" href="/workouts">Workouts</Link></li>
+        <li className={`${usePathname() === "/" ? "bg-[#1A2312] text-primary!" : ""} hover:bg-[#1A2312]  hover:text-primary! rounded-full`}><Link className="px-4 py-1.5" href="/">Workouts</Link></li>
         <li className={`${usePathname() === "/plans" ? "bg-[#1A2312] text-primary!" : ""} hover:bg-[#1A2312]  hover:text-primary! rounded-full`}><Link className="px-4 py-1.5" href="/plans">My Plans</Link></li>
     </>
 
