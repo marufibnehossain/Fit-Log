@@ -52,15 +52,21 @@ const MyPlansPage = () => {
 
                     <div className="pr-6">
                         <p className="text-xs mb-1">Exercises</p>
-                        <h2 className="sm:text-4xl text-2xl font-bold">2</h2>
+                        <h2 className="sm:text-4xl text-2xl font-bold">{workoutPlan.length}</h2>
                     </div>
                     <div className="px-6 border-l border-r border-border">
                         <p className="text-xs mb-1">Minutes</p>
-                        <h2 className="sm:text-4xl text-2xl font-bold">23</h2>
+                        <h2 className="sm:text-4xl text-2xl font-bold">{workoutPlan.reduce(
+                            (total, workout) => total + workout.duration,
+                            0
+                        )}</h2>
                     </div>
                     <div className="pl-6">
                         <p className="text-xs mb-1">Calories</p>
-                        <h2 className="sm:text-4xl text-2xl font-bold">190</h2>
+                        <h2 className="sm:text-4xl text-2xl font-bold">
+                            {workoutPlan.reduce(
+                            (total, workout) => total + workout.caloriesBurned, 0)}
+                        </h2>
                     </div>
                 </div>
                 <div className="flex items-center justify-between mb-8">
