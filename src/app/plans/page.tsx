@@ -224,6 +224,12 @@ const MyPlansPage = () => {
                                 <p className="text-xs mb-6">
                                     Save workouts from the library to see them here.
                                 </p>
+                                <Link
+                                    href="/"
+                                    className="btn-global rounded-full normal-case"
+                                >
+                                    Go to workouts
+                                </Link>
                             </div>
                         ) : (
                             sortedSavedWorkout.map((workout: IWorkout) => (
