@@ -1,5 +1,4 @@
 "use client";
-
 import React, { useContext, useState } from "react";
 import Link from "next/link";
 import { WorkoutContext } from "@/context/workoutContext";
@@ -9,11 +8,34 @@ import { PiFireSimpleFill } from "react-icons/pi";
 import { FaRegStar, FaCheck } from "react-icons/fa6";
 import { IWorkout } from "@/types/workout.type";
 import { LiaTimesSolid } from "react-icons/lia";
+import { FaChevronDown } from "react-icons/fa6";
 
 const MyPlansPage = () => {
     const { workoutPlan, savedWorkout, removeWorkout, toggleWorkoutDone, removeSavedWorkout } = useContext(WorkoutContext)!;
 
     const [activeTab, setActiveTab] = useState("today plan");
+    const [sortBy, setSortBy] = useState("duration");
+
+    const sortWorkouts = (workouts: IWorkout[]) => {
+        return [...workouts].sort((a, b) => {
+            if (sortBy === "duration") {
+                return a.duration - b.duration;
+            }
+
+            if (sortBy === "calories") {
+                return b.caloriesBurned - a.caloriesBurned;
+            }
+
+            if (sortBy === "rating") {
+                return b.rating - a.rating;
+            }
+
+            return 0;
+        });
+    };
+
+    const sortedWorkoutPlan = sortWorkouts(workoutPlan);
+    const sortedSavedWorkout = sortWorkouts(savedWorkout);
 
     return (
         <div className="px-[5vw] py-10">
@@ -30,21 +52,15 @@ const MyPlansPage = () => {
 
                     <div className="pr-6">
                         <p className="text-xs mb-1">Exercises</p>
-                        <h2 className="sm:text-4xl text-2xl font-bold">
-                            2
-                        </h2>
+                        <h2 className="sm:text-4xl text-2xl font-bold">2</h2>
                     </div>
                     <div className="px-6 border-l border-r border-border">
                         <p className="text-xs mb-1">Minutes</p>
-                        <h2 className="sm:text-4xl text-2xl font-bold">
-                            23
-                        </h2>
+                        <h2 className="sm:text-4xl text-2xl font-bold">23</h2>
                     </div>
                     <div className="pl-6">
                         <p className="text-xs mb-1">Calories</p>
-                        <h2 className="sm:text-4xl text-2xl font-bold">
-                            190
-                        </h2>
+                        <h2 className="sm:text-4xl text-2xl font-bold">190</h2>
                     </div>
                 </div>
                 <div className="flex items-center justify-between mb-8">
@@ -76,13 +92,24 @@ const MyPlansPage = () => {
                             Saved Plan
                         </button>
                     </div>
-                    <button className="btn-global">
-                        Filter
-                    </button>
+                    <div className="relative">
+                        <select
+                            className="bg-surface border border-border rounded-lg px-4 py-2 pr-8 text-xs appearance-none"
+                            value={sortBy}
+                            onChange={(e) => setSortBy(e.target.value)}
+                        >
+                            <option value="duration">Duration</option>
+                            <option value="calories">Calories</option>
+                            <option value="rating">Rating</option>
+                        </select>
+                        <div className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none">
+                            <FaChevronDown className="text-xs" />
+                        </div>
+                    </div>
                 </div> 
                 <div className="mt-8">
                     {activeTab === "today plan" && (
-                        workoutPlan.length === 0 ? (
+                        sortedWorkoutPlan.length === 0 ? (
                             <div className="bg-[#1113177d] h-80 border border-dashed border-[rgba(255,255,255,0.1)] rounded-xl flex flex-col items-center justify-center">
                                 <h3 className="text-xl font-bold tracking-[0.7px] uppercase mb-2">
                                     NOTHING HERE YET
@@ -98,9 +125,9 @@ const MyPlansPage = () => {
                                 </Link>
                             </div>
                         ) : (
-                            workoutPlan.map((workout: IWorkout) => (
+                            sortedWorkoutPlan.map((workout: IWorkout) => (
                                 <div
-                                    className="bg-surface border border-border rounded-2xl overflow-hidden flex justify-between mb-6 p-6"
+                                    className="bg-surface border border-border rounded-2xl overflow-hidden flex max-sm:flex-col gap-5 justify-between mb-6 p-6"
                                     key={workout.id}
                                 >
 
@@ -108,7 +135,7 @@ const MyPlansPage = () => {
 
                                         <Image
                                             src={workout.image}
-                                            className="w-36 h-20 object-cover border border-border rounded-xl"
+                                            className="w-36 max-sm:w-20 h-20 object-cover border border-border rounded-xl"
                                             width={144}
                                             height={80}
                                             alt={workout.name}
@@ -183,7 +210,7 @@ const MyPlansPage = () => {
                         )
                     )}
                     {activeTab === "saved plan" && (
-                        savedWorkout.length === 0 ? (
+                        sortedSavedWorkout.length === 0 ? (
                             <div className="bg-[#1113177d] h-80 border border-dashed border-[rgba(255,255,255,0.1)] rounded-xl flex flex-col items-center justify-center">
                                 <h3 className="text-xl font-bold tracking-[0.7px] uppercase mb-2">
                                     NOTHING SAVED YET
@@ -193,15 +220,15 @@ const MyPlansPage = () => {
                                 </p>
                             </div>
                         ) : (
-                            savedWorkout.map((workout: IWorkout) => (
+                            sortedSavedWorkout.map((workout: IWorkout) => (
                                 <div
-                                    className="bg-surface border border-border rounded-2xl overflow-hidden flex justify-between mb-6 p-6"
+                                    className="bg-surface border border-border rounded-2xl overflow-hidden flex max-sm:flex-col gap-5 justify-between mb-6 p-6"
                                     key={workout.id}
                                 >
                                     <div className="flex gap-4 items-center">
                                         <Image
                                             src={workout.image}
-                                            className="w-36 h-20 object-cover border border-border rounded-xl"
+                                            className="w-36 max-sm:w-20 h-20 object-cover border border-border rounded-xl"
                                             width={144}
                                             height={80}
                                             alt={workout.name}
