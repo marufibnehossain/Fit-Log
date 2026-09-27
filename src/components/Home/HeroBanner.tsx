@@ -3,7 +3,7 @@ import Image from 'next/image';
 
 const HeroBanner = () => {
     return (
-        <div className="bg-[#15171D] min-h-112 border border-[#222630] rounded-2xl px-14 py-14 max-sm:px-8 max-sm:py-8">
+        <div className="bg-surface min-h-112 border border-border rounded-2xl px-14 py-14 max-sm:px-8 max-sm:py-8">
             <div className="w-full flex flex-col lg:flex-row-reverse justify-between items-center gap-10">
                 <Image
                 width={334}

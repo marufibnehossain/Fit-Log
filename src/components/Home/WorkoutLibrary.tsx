@@ -1,7 +1,7 @@
 import React from 'react';
-import getWorkouts from '@/app/services/data';
+import getWorkouts from '@/services/data';
 import WorkoutCard from './WorkoutCard';
-import { IWorkout } from '@/app/types/workout.type';
+import { IWorkout } from '@/types/workout.type';
 
 
 const workoutData = await getWorkouts();

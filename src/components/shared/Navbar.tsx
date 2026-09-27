@@ -2,9 +2,11 @@
 import { usePathname } from "next/navigation";
 import Image from 'next/image';
 import Link from 'next/link';
-import React from 'react';
+import React, { useContext } from "react";
+import { WorkoutContext } from "@/context/workoutContext";
 
 const Navbar = () => {
+    const { workoutPlan, savedWorkout } = useContext(WorkoutContext)!;
 
     const links = <>
         <li className={`${usePathname() === "/" ? "bg-[#1A2312] text-primary!" : ""} hover:bg-[#1A2312]  hover:text-primary! rounded-full`}><Link className="px-4 py-1.5" href="/">Workouts</Link></li>
@@ -35,8 +37,19 @@ const Navbar = () => {
                     </ul>
                 </div>
                 <div className="navbar-end gap-6 text-xs">
-                    <a className="">Plan <span className="text-xs text-black leading-[0.8em] px-1.5 py-0.5 bg-primary rounded-full">0</span></a>
-                    <a className="">Saved <span className="text-xs text-black leading-[0.8em] px-1.5 py-0.5 bg-primary rounded-full">0</span></a>
+                    <Link href="/plans">
+                        Plan{" "}
+                        <span className="text-xs text-black leading-[0.8em] px-1.5 py-0.5 bg-primary rounded-full">
+                            {workoutPlan.length}
+                        </span>
+                    </Link>
+
+                    <Link href="/plans">
+                        Saved{" "}
+                        <span className="text-xs text-black leading-[0.8em] px-1.5 py-0.5 bg-primary rounded-full">
+                            {savedWorkout.length}
+                        </span>
+                    </Link>
                 </div>
             </div>
         </div>

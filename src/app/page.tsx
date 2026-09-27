@@ -1,5 +1,5 @@
-import HeroBanner from "./components/Home/HeroBanner";
-import WorkoutLibrary from "./components/Home/WorkoutLibrary";
+import HeroBanner from "@/components/Home/HeroBanner";
+import WorkoutLibrary from "@/components/Home/WorkoutLibrary";
 
 export default function Home() {
   return (

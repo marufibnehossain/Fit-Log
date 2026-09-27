@@ -11,5 +11,6 @@ export interface IWorkout {
     reps: string,
     rating: number,
     description: string,
-    instructions: string[]
+    instructions: string[],
+    done?: boolean;
 }

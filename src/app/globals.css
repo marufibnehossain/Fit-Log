@@ -1,10 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Oswald:wght@200..700&display=swap');
 @import "tailwindcss";
-@plugin "daisyui";
+@plugin "daisyui" {
+  themes: false;
+};
 
 
-:root {
-  --color-primary: #C2F800;
+@theme {
+  --color-primary: #C2F800 !important;
   --color-primary-hover: #AEE000;
   --color-background: #0C0D10;
   --color-surface: #15171D;
@@ -34,6 +36,10 @@ p, li {
 
 @layer components {
   .btn-global {
-    @apply bg-primary text-black py-3 px-6 rounded-md text-xs uppercase font-bold tracking-[0.3px];
+    @apply bg-primary text-black py-3 px-6 rounded-md text-xs uppercase font-bold tracking-[0.3px] hover:bg-primary-hover transition duration-300 ease-in-out;
+  }
+
+  .btn-second {
+    @apply bg-transparent text-[#E5E7EB] py-3 px-6 rounded-md border border-border text-xs uppercase font-bold tracking-[0.3px] hover:bg-primary-hover transition duration-300 ease-in-out;
   }
 }
