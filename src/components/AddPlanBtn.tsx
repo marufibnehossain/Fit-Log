@@ -6,11 +6,11 @@ import { LuCalendarPlus2 } from "react-icons/lu";
 import { toast } from "react-toastify";
 
 const AddPlanBtn = ({ workout }: { workout: IWorkout }) => {
-    const { workoutPlan, setWorkoutPlan } = useContext(WorkoutContext);
+    const { workoutPlan, setWorkoutPlan } = useContext(WorkoutContext)!;
 
     const handleAddWorkout = () => {
         const alreadyAdded = workoutPlan.some(
-            (item) => item.id === workout.id
+            (item: IWorkout) => item.id === workout.id
         );
 
         if (alreadyAdded) {
@@ -28,7 +28,7 @@ const AddPlanBtn = ({ workout }: { workout: IWorkout }) => {
             onClick={handleAddWorkout}
         >
             <LuCalendarPlus2 className="text-base" />
-            Add to today&apos;s plan
+            Add to todays plan
         </button>
     );
 };

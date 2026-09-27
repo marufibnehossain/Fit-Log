@@ -1,4 +1,5 @@
 "use client";
+
 import React, { createContext, useState } from "react";
 import { IWorkout } from "@/types/workout.type";
 import { toast } from "react-toastify";
@@ -30,6 +31,7 @@ const WorkoutProvider = ({ children }: { children: React.ReactNode }) => {
         setSavedWorkout((prev) =>
             prev.filter((workout) => workout.id !== id)
         );
+        toast.success("Saved workout removed");
     };
 
     const toggleWorkoutDone = (id: number) => {
@@ -51,8 +53,8 @@ const WorkoutProvider = ({ children }: { children: React.ReactNode }) => {
                 savedWorkout,
                 setSavedWorkout,
                 removeWorkout,
-                toggleWorkoutDone,
-                removeSavedWorkout
+                removeSavedWorkout,
+                toggleWorkoutDone
             }}
         >
             {children}
