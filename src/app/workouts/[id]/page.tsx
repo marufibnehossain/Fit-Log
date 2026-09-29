@@ -16,7 +16,7 @@ const detailWorkoutPage = async ({params}: IWorkoutDetailsProps) => {
 
     return (
         <div className='px-[5vw] py-12'>
-            <div className='max-w-7xl mx-auto grid grid-cols-2 sm:gap-14 gap-9'>
+            <div className='max-w-7xl mx-auto grid grid-cols-2 max-sm:grid-cols-1 sm:gap-14 gap-9'>
                 <Image className='w-full h-auto border border-border rounded-2xl' src={workout.image} width={300} height={300} alt="arms" />
                 <div>
                     <h2 className='md:text-4xl text-3xl font-bold tracking-[0.45px] uppercase mb-3'>{workout.name}</h2>
